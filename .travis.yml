@@ -14,5 +14,8 @@ install: true
 jobs:
   include:
   - stage: Compilation and Installation
-    script: scripts/travis.sh install
-
+    script: 
+        - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
+            sudo apt-get install -y maven openjdk-8-jdk;
+          fi
+        - scripts/travis.sh install
